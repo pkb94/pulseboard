@@ -17,6 +17,7 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Optional
 
 from app.domain.entities.anomaly import AnomalySeverity
 from app.domain.entities.metric import MetricName
@@ -37,7 +38,7 @@ class Alert:
     anomaly_id: str                          # reference back to the triggering anomaly
     status: AlertStatus = AlertStatus.ACTIVE
     triggered_at: datetime = field(default_factory=datetime.utcnow)
-    resolved_at: datetime | None = None
+    resolved_at: Optional[datetime] = None
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
 
     # ── Lifecycle state machine ────────────────────────────────────────────

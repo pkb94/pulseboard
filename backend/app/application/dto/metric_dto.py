@@ -20,6 +20,8 @@ from __future__ import annotations
 
 from datetime import datetime
 
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 from app.domain.entities.metric import MetricName, MetricPoint, MetricSeries
@@ -47,8 +49,8 @@ class MetricSeriesDTO(BaseModel):
     unit: str
     current: float
     change_pct: float
-    threshold_upper: float | None = None
-    threshold_lower: float | None = None
+    threshold_upper: Optional[float] = None
+    threshold_lower: Optional[float] = None
     data: list[MetricPointDTO] = Field(default_factory=list)
 
     # Map readable labels and units from domain enum values

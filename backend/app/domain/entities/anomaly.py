@@ -18,6 +18,7 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Optional
 
 from app.domain.entities.metric import MetricName
 
@@ -66,7 +67,7 @@ class Anomaly:
     detected_at: datetime = field(default_factory=datetime.utcnow)
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
     acknowledged: bool = False
-    acknowledged_at: datetime | None = None
+    acknowledged_at: Optional[datetime] = None
 
     def acknowledge(self) -> None:
         """

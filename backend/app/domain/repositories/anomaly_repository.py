@@ -6,6 +6,7 @@ app/domain/repositories/anomaly_repository.py + alert_repository.py
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from typing import Optional
 
 from app.domain.entities.anomaly import Anomaly
 from app.domain.entities.alert import Alert, AlertStatus
@@ -18,7 +19,7 @@ class IAnomalyRepository(ABC):
         ...
 
     @abstractmethod
-    async def get_by_id(self, anomaly_id: str) -> Anomaly | None:
+    async def get_by_id(self, anomaly_id: str) -> Optional[Anomaly]:
         ...
 
     @abstractmethod
@@ -37,7 +38,7 @@ class IAlertRepository(ABC):
         ...
 
     @abstractmethod
-    async def get_by_id(self, alert_id: str) -> Alert | None:
+    async def get_by_id(self, alert_id: str) -> Optional[Alert]:
         ...
 
     @abstractmethod

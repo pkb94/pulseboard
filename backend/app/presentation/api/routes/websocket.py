@@ -14,16 +14,13 @@ even if the connection drops without a proper close frame.
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from app.core.dependencies import get_connection_manager
-from app.infrastructure.websocket.connection_manager import ConnectionManager
 
 router = APIRouter(tags=["websocket"])
 
 
 @router.websocket("/ws/metrics")
-async def metrics_websocket(
-    ws: WebSocket,
-    manager: ConnectionManager = get_connection_manager(),
-) -> None:
+async def metrics_websocket(ws: WebSocket) -> None:
+    manager = get_connection_manager()
     """
     WebSocket endpoint that streams real-time metric updates and anomaly alerts.
 

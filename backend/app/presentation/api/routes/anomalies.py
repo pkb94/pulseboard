@@ -2,6 +2,7 @@
 LAYER 4 — PRESENTATION — app/presentation/api/routes/anomalies.py
 """
 
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.application.dto.anomaly_dto import AlertDTO, AnomalyDTO
 from app.application.use_cases.detect_anomalies import (
@@ -42,7 +43,7 @@ async def acknowledge_anomaly(
 
 @router.get("/api/alerts", response_model=list[AlertDTO])
 async def list_alerts(
-    alert_status: str | None = None,
+    alert_status: Optional[str] = None,
     repo: IAlertRepository = Depends(get_alert_repo),
 ) -> list[AlertDTO]:
     if alert_status:

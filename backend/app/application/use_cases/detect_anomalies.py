@@ -14,7 +14,7 @@ and 1 domain service. Notice: none of that complexity leaks to the API.
 
 from __future__ import annotations
 
-from typing import Callable, Awaitable
+from typing import Callable, Awaitable, Optional
 
 from app.application.dto.anomaly_dto import AlertDTO, AnomalyDTO
 from app.domain.entities.alert import Alert
@@ -48,7 +48,7 @@ class DetectAnomaliesUseCase:
         self._detection = detection_service
         self._broadcast = broadcast_fn
 
-    async def execute(self, metric: MetricName, value: float) -> AnomalyDTO | None:
+    async def execute(self, metric: MetricName, value: float) -> Optional[AnomalyDTO]:
         from datetime import datetime
         from app.domain.entities.metric import MetricPoint
 

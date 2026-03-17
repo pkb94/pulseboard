@@ -22,7 +22,7 @@ The domain service receives an abstract detector via the constructor
 from __future__ import annotations
 
 from datetime import datetime, timedelta
-from typing import Protocol
+from typing import Optional, Protocol
 
 from app.domain.entities.anomaly import Anomaly, AnomalySeverity
 from app.domain.entities.metric import MetricName, MetricSeries
@@ -56,7 +56,7 @@ class AnomalyDetectionService:
         # Track last anomaly time per metric for deduplication
         self._last_anomaly: dict[MetricName, datetime] = {}
 
-    def evaluate(self, series: MetricSeries) -> Anomaly | None:
+    def evaluate(self, series: MetricSeries) -> Optional[Anomaly]:
         """
         Core domain logic:
         1. Run the ML detector (infrastructure concern, abstracted)

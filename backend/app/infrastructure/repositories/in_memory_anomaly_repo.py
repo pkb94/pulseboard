@@ -5,6 +5,7 @@ LAYER 3 — INFRASTRUCTURE — in_memory_anomaly_repo.py
 from __future__ import annotations
 
 import asyncio
+from typing import Optional
 from app.domain.entities.anomaly import Anomaly
 from app.domain.entities.alert import Alert, AlertStatus
 from app.domain.repositories.anomaly_repository import IAnomalyRepository, IAlertRepository
@@ -19,7 +20,7 @@ class InMemoryAnomalyRepository(IAnomalyRepository):
         async with self._lock:
             self._store[anomaly.id] = anomaly
 
-    async def get_by_id(self, anomaly_id: str) -> Anomaly | None:
+    async def get_by_id(self, anomaly_id: str) -> Optional[Anomaly]:
         async with self._lock:
             return self._store.get(anomaly_id)
 
@@ -50,7 +51,7 @@ class InMemoryAlertRepository(IAlertRepository):
         async with self._lock:
             self._store[alert.id] = alert
 
-    async def get_by_id(self, alert_id: str) -> Alert | None:
+    async def get_by_id(self, alert_id: str) -> Optional[Alert]:
         async with self._lock:
             return self._store.get(alert_id)
 

@@ -4,6 +4,7 @@ LAYER 2 — APPLICATION DTO — app/application/dto/anomaly_dto.py
 
 from __future__ import annotations
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel
 from app.domain.entities.anomaly import Anomaly, AnomalySeverity
 from app.domain.entities.alert import Alert, AlertStatus
@@ -45,7 +46,7 @@ class AlertDTO(BaseModel):
     status: AlertStatus
     anomaly_id: str
     triggered_at: datetime
-    resolved_at: datetime | None = None
+    resolved_at: Optional[datetime] = None
     duration_seconds: float
 
     @classmethod

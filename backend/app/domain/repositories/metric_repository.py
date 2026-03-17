@@ -24,6 +24,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import Optional
 
 from app.domain.entities.metric import MetricName, MetricPoint, MetricSeries
 
@@ -49,7 +50,7 @@ class IMetricRepository(ABC):
         ...
 
     @abstractmethod
-    async def get_latest(self, metric: MetricName) -> MetricPoint | None:
+    async def get_latest(self, metric: MetricName) -> Optional[MetricPoint]:
         """Retrieve the most recent reading for a metric."""
         ...
 

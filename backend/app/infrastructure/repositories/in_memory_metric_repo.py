@@ -17,6 +17,7 @@ from __future__ import annotations
 import asyncio
 from collections import defaultdict
 from datetime import datetime
+from typing import Optional
 
 from app.domain.entities.metric import MetricName, MetricPoint, MetricSeries
 from app.domain.repositories.metric_repository import IMetricRepository
@@ -65,7 +66,7 @@ class InMemoryMetricRepository(IMetricRepository):
         )
         return series
 
-    async def get_latest(self, metric: MetricName) -> MetricPoint | None:
+    async def get_latest(self, metric: MetricName) -> Optional[MetricPoint]:
         async with self._lock:
             pts = self._store.get(metric, [])
             return pts[-1] if pts else None
