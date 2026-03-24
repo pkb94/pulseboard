@@ -16,8 +16,7 @@
 
 PulseBoard monitors live system metrics (CPU, memory, latency, error rate, revenue, active users), streams them to a browser dashboard in real time over WebSocket, and uses an **Isolation Forest ML model** to automatically detect anomalies — raising alerts with severity classification the moment something goes wrong.
 
-Designed to demonstrate senior full-stack + ML engineering skills relevant to:
-**Apple · Google · JPMorgan · SEL · Sherwin-Williams**
+Designed to demonstrate senior full-stack + ML engineering skills
 
 ---
 
