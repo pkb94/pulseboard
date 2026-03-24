@@ -20,7 +20,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pydantic import BaseModel, Field
 
@@ -54,7 +54,7 @@ class MetricSeriesDTO(BaseModel):
     data: list[MetricPointDTO] = Field(default_factory=list)
 
     # Map readable labels and units from domain enum values
-    _LABELS: dict[MetricName, str] = {
+    _LABELS: ClassVar[dict[MetricName, str]] = {
         MetricName.CPU_USAGE: "CPU Usage",
         MetricName.MEMORY_USAGE: "Memory Usage",
         MetricName.REQUEST_RATE: "Request Rate",
@@ -65,7 +65,7 @@ class MetricSeriesDTO(BaseModel):
         MetricName.ACTIVE_USERS: "Active Users",
     }
 
-    _UNITS: dict[MetricName, str] = {
+    _UNITS: ClassVar[dict[MetricName, str]] = {
         MetricName.CPU_USAGE: "%",
         MetricName.MEMORY_USAGE: "%",
         MetricName.REQUEST_RATE: "req/s",
